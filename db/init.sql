@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS usuaris (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS partides (
+    idPartida INTEGER PRIMARY KEY AUTOINCREMENT,
+    idUsuari INTEGER NOT NULL,
+    punts INTEGER NOT NULL,
+    data TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (idUsuari) REFERENCES usuaris(id)
+);

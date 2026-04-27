@@ -1,0 +1,607 @@
+/* ============================================
+   FUN WITH FLAGS — styles.css
+   Onest font | Dark mode | Minimalist
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap");
+
+/* ── TOKENS ── */
+:root {
+  --bg: #141414;
+  --bg-card: #1c1c1c;
+  --border: #2a2a2a;
+  --border-hover: #3a3a3a;
+
+  --text-primary: #f0f0f0;
+  --text-secondary: #888;
+  --text-muted: #555;
+
+  --accent: #e8c872;
+  --accent-dim: rgba(232, 200, 114, 0.12);
+
+  --radius: 6px;
+  --radius-lg: 12px;
+
+  --font: "Onest", sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* ── RESET ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── BASE ── */
+html {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  padding: 0 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 80px 0 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hero__accent {
+  color: var(--accent);
+}
+
+.hero__subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+/* ── BUTTON ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+  width: fit-content;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #0e0c06;
+  padding: 14px 28px;
+}
+
+.btn--primary:hover {
+  background: #f0d48a;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(232, 200, 114, 0.22);
+}
+
+/* ── SECTION TITLE ── */
+.section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* ── DAY FLAG ── */
+.dayFlag {
+  margin-bottom: 80px;
+}
+
+.dayFlag__card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 300px;
+  transition: border-color 0.3s;
+}
+
+.dayFlag__card:hover {
+  border-color: var(--border-hover);
+}
+
+.dayFlag__flag-wrap {
+  overflow: hidden;
+  background: #111;
+}
+
+.dayFlag__flag {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.9;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.dayFlag__card:hover .dayFlag__flag {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.dayFlag__info {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dayFlag__emoji {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.dayFlag__name {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-top: 4px;
+}
+
+.dayFlag__official {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.dayFlag__meta {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dayFlag__meta li {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dayFlag__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  min-width: 60px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 680px) {
+  .dayFlag__card {
+    grid-template-columns: 1fr;
+  }
+
+  .dayFlag__flag-wrap {
+    height: 200px;
+  }
+
+  .hero {
+    padding: 48px 0 48px;
+  }
+}
+
+/* ── GAME ── */
+.stats {
+  display: flex;
+  gap: 24px;
+  padding: 32px 0 8px;
+}
+
+.stats p {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.stats p span {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 0 80px;
+}
+
+.game h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.game__flag {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.optionBtns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.optionBtns form {
+  width: 100%;
+}
+
+.btn--option {
+  width: 100%;
+  justify-content: center;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.15s;
+}
+
+.btn--option:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+.btn--correct {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+}
+
+.btn--wrong {
+  border-color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+  color: #f87171;
+}
+
+/* ── AUTH (login / registre) ── */
+.auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth__card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.auth__title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.auth__title span {
+  color: var(--accent);
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.auth__input {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  background: var(--bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.auth__input:focus {
+  border-color: var(--accent);
+}
+
+.auth__input::placeholder {
+  color: var(--text-muted);
+}
+
+.auth__error {
+  font-size: 0.8rem;
+  color: #f87171;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: var(--radius);
+}
+
+.auth__footer {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.auth__footer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth__footer a:hover {
+  text-decoration: underline;
+}
+
+.btn--full {
+  width: 100%;
+  justify-content: center;
+  padding: 14px;
+}
+
+/* ── RANKING ── */
+.ranking {
+  padding: 60px 0 80px;
+}
+
+.ranking__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.ranking__subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.ranking__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ranking__table thead th {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 0 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ranking__row {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.ranking__row:hover {
+  background: var(--bg-card);
+}
+
+.ranking__row td {
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.ranking__pos {
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  width: 48px;
+}
+
+.ranking__pos--1 {
+  color: var(--accent);
+}
+.ranking__pos--2 {
+  color: #aaa;
+}
+.ranking__pos--3 {
+  color: #b87333;
+}
+
+.ranking__player {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ranking__score {
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.ranking__date {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* ── HEADER ── */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 24px 0 0;
+  gap: 16px;
+}
+
+.greetingUser {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.greetingUser span {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.loginLink,
+.logoutLink {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.loginLink {
+  background: var(--accent);
+  color: #0e0c06;
+}
+
+.loginLink:hover {
+  background: #f0d48a;
+}
+
+.logoutLink {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.logoutLink:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+/* ── SITE HEADER ── */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.site-nav__logo {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.site-nav__logo span {
+  color: var(--accent);
+}
+
+.site-nav__links {
+  display: flex;
+  gap: 24px;
+}
+
+.site-nav__links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.site-nav__links a:hover {
+  color: var(--text-primary);
+}
+
+.site-header__auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
