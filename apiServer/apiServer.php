@@ -14,27 +14,39 @@ if (isset($_GET['action'])) {
 }
 
 if ($action === 'register') {
-    $usuari = new Usuari($_POST['nom'], $_POST['password'], null);
+    $body = json_decode(file_get_contents('php://input'), true);
+    if (!is_array($body) || !isset($body['nom'], $body['password'])) {
+        http_response_code(400);
+        echo json_encode(["status" => "error", "message" => "Invalid request body"]);
+        exit;
+    }
+    $usuari = new Usuari($body['nom'], $body['password'], null);
     $result = $dao->insertUser($usuari);
     if ($result === false) {
         http_response_code(500);
         echo json_encode(["status" => "error"]);
     } else {
         http_response_code(201);
-        echo json_encode(["status" => "success", "id" => $result->id,]);
+        echo json_encode(["status" => "success", "id" => $result->id]);
     }
     exit;
 }
 
 if ($action === 'login') {
-    $usuari = new Usuari($_POST['nom'], $_POST['password']);
+    $body = json_decode(file_get_contents('php://input'), true);
+    if (!is_array($body) || !isset($body['nom'], $body['password'])) {
+        http_response_code(400);
+        echo json_encode(["status" => "error", "message" => "Invalid request body"]);
+        exit;
+    }
+    $usuari = new Usuari($body['nom'], $body['password']);
     $ok = $dao->loginUser($usuari);
     if ($ok === false) {
-        http_response_code(500);
+        http_response_code(401);
         echo json_encode(["status" => "error"]);
     } else {
         http_response_code(200);
-        echo json_encode(["status" => "success", "id" => $ok->id,]);
+        echo json_encode(["status" => "success", "id" => $ok->id]);
     }
     exit;
 }
@@ -56,8 +68,9 @@ if ($action === 'getGames') {
 
 
 if ($action === 'saveGame') {
-    $game = new Partida($_POST['idUsuari'], $_POST['punts'], null, null);
-    error_log("SAVEGAME POST: " . print_r($_POST, true));
+    $body = json_decode(file_get_contents('php://input'), true);
+    $game = new Partida($body['idUsuari'] ?? $_POST['idUsuari'] ?? null, $body['punts'] ?? $_POST['punts'] ?? null, null, null);
+    error_log("SAVEGAME DATA: " . print_r($body, true));
     $result = $dao->insertPartida($game->idUsuari, $game->punts);
     error_log("INSERT RESULT: " . var_export($result, true));
     if ($result === false) {
