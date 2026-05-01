@@ -17,15 +17,16 @@ class UsersApi
         $ch = curl_init($this->getApiUrl() . '?action=login');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, [
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
             'nom' => $usuari->nom,
             'password' => $usuari->password
-        ]);
+        ]));
         $response = curl_exec($ch);
         return json_decode($response, true);
     }
@@ -35,15 +36,16 @@ class UsersApi
         $ch = curl_init($this->getApiUrl() . '?action=register');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, [
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
             'nom' => $usuari->nom,
             'password' => $usuari->password
-        ]);
+        ]));
         $response = curl_exec($ch);
         return json_decode($response, true);
     }

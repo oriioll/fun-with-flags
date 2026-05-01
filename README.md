@@ -1,4 +1,4 @@
-# Fun with Flags 🚩
+# Fun with Flags
 
 **Un juego interactivo de adivinanza de banderas construido con arquitectura MVC modular y escalable.**
 
